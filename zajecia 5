@@ -1,0 +1,239 @@
+using System;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Zadanie5_1();
+            Zadanie5_2();
+            Zadanie5_3();
+            Zadanie5_4();
+            Zadanie5_5();
+            Zadanie5_6();
+            Zadanie5_7();
+        }
+
+        static void Zadanie5_1() {
+            Console.WriteLine("Podaj roizmiar tablicy: ");
+            int n;
+            n = Convert.ToInt32(Console.ReadLine());
+            int[] tabliczka;
+            tabliczka = new int[n];
+            int i = 1;
+            while (i <= n)
+            {
+                Console.WriteLine("Podaj element (" + i + ")");
+                try
+                {
+                    tabliczka[i] = System.Int16.Parse(Console.ReadLine());
+                }
+
+                catch (Exception)
+                {
+                    Console.WriteLine("Błedne dane");
+                }
+                i++;
+            }
+            foreach (int element in tabliczka)
+            {
+                Console.WriteLine(element + " ");
+                Console.WriteLine();
+            }
+        }
+            
+
+            static void Zadanie5_2()
+                {
+                int[] array = new int[30];
+                for (int i = 0; i < array.Length; i++)
+                {
+                    array[i] = i + 1;
+                }
+                int sum = 0;
+                foreach (int num in array)
+                {
+                    sum += num;
+                }
+                double average = (double)sum / array.Length;
+                Console.WriteLine("Tablica elementow: ");
+                foreach (int num in array)
+                {
+                    Console.Write(num + "");
+                }
+                Console.WriteLine($"\n srednia wartosc elementow tablicy: {average}");
+
+            Console.WriteLine();
+            Console.WriteLine();
+
+        }
+
+        static void Zadanie5_3()
+        {
+            byte[] tablica = { 10, 5, 6, 2, 4, 7, 9, 1, 3, 8 };
+            byte element = tablica[0];
+            int p = 0;
+
+            for (int i = 1; i < tablica.Length; i++)
+            {
+                if (tablica[i] < element)
+                {
+                    element = tablica[i];
+                    p = i;
+                }
+            }
+            Console.WriteLine("Najmniejszy element tablicy: " + element);
+            Console.WriteLine("Pozycja najmniejszego elementu tablicy: " + p);
+
+            Console.WriteLine();
+            
+        }
+
+        static void Zadanie5_4()
+        {
+            int[,] array = new int[5, 5];
+            Random random = new Random();
+
+            for (int row = 0; row < 5; row++)
+            {
+                for (int col = 0; col < 5; col++)
+                {
+                    array[row, col] = random.Next(10);
+                }
+            }
+            Console.WriteLine("WYgenertowana tablca 5x5");
+            for (int row = 0; row < 5; row++)
+            {
+                for (int col = 0; col < 5; col++)
+                {
+                    Console.Write(array[row, col] + " ");
+                }
+                Console.WriteLine();
+            }
+            int sum = 0;
+            for (int i = 0; i < 5; i++)
+            {
+                sum += array[i, i];
+            }
+            int dsum = 0;
+            for (int i = 0; i < 5; i++)
+            {
+                dsum += array[i, 4 - i];
+            }
+            Console.WriteLine($"Suma elementow na głownej przekatnej: {sum}");
+            Console.WriteLine($"Suma elementow na drugiej przekatnej: {dsum}");
+            Console.WriteLine();
+        
+
+        }
+
+        static void Zadanie5_5()
+        {
+            int[,] tablica = new int[3, 5]
+            {
+                {1,2,3,4,5},
+                {6,7,8,9,10},
+                {11,12,13,14,15},
+            };
+
+            Console.WriteLine("Tablica 3x5");
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+
+                    Console.Write(tablica[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("Tablica 5x3");
+            for (int j = 0; j < 5; j++)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+
+                    Console.Write(tablica[i, j] + "\t");
+                }
+                Console.WriteLine();
+                
+            }
+        }
+
+        static void Zadanie5_6()
+        {
+            const int num = 6;
+            const int min = 1;
+            const int max = 49;
+
+            int[] lotto = new int[num];
+            Random r = new Random();
+
+            for (int i = 0; i < num; i++)
+            {
+                int rn;
+                do
+                {
+                    rn = r.Next(min, max + 1);
+                }
+                while (Array.IndexOf(lotto, rn) != -1);
+                lotto[i] = rn;
+            }
+            Array.Sort(lotto);
+            Console.WriteLine("Wylosowane liczby to:  ");
+            foreach (int number in lotto)
+            {
+                Console.Write(number + " ");
+               
+            }
+        }
+
+        static void Zadanie5_7()
+        {
+            int[] input = new int[10];
+            int[] output = new int[10];
+
+            Random r = new Random();
+            for (int i = 0; i < input.Length; i++)
+            {
+                input[i] = r.Next(0, 11);
+            }
+            Console.WriteLine("Tablica wyjsciowa: ");
+            for (int i = 0; i < input.Length; i++)
+            {
+                Console.Write(input[i] + " ");
+            }
+            Console.WriteLine();
+
+            for (int it = 0; it < 10; it++)
+            {
+                int maxIndex = -1;
+                int maxValue = -1;
+
+                for (int i = 0; i < input.Length; i++)
+                {
+                    if (input[i] > maxValue)
+                    {
+                        maxIndex = i;
+                        maxValue = input[i];
+                    }
+                }
+
+                if (maxIndex == -1)
+                {
+                    break;
+                }
+                output[it] = maxValue;
+                input[maxIndex] = 0;
+            }
+            Console.WriteLine("tablice wynikowa: ");
+            for (int i = 0; i < output.Length; i++)
+            {
+                Console.Write(output[i] + " ");
+               
+            }
+        }
+
+        }
+    }
+
